@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f3e8">
+  <meta name="description" content="{{ business.tagline }} Explore small-batch homemade pickles.">
+  <title>{{ business.name }} | Homemade with heart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="{{ business.name }} home">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span>{{ business.name }}</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#pickles">Our pickles</a>
+      <a href="#story">Our story</a>
+      <a href="#order">Order</a>
+    </nav>
+    <a class="header-cta" href="#pickles">Find your favourite <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Small batch · Big heart</p>
+        <h1>A taste of home,<br><em>in every jar.</em></h1>
+        <p class="hero-description">Handmade pickles, full of sunshine and the good stuff. Made slowly, shared generously.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#pickles">Explore the pantry <span aria-hidden="true">→</span></a>
+          <span class="hand-note">Good food, made with love <span aria-hidden="true">↗</span></span>
+        </div>
+        <div class="hero-proof">
+          <span class="proof-stars" aria-label="Five stars">★★★★★</span>
+          <span>Made fresh in small batches</span>
+        </div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Illustration of colorful homemade pickle jars">
+        <div class="sun-disc"></div>
+        <span class="art-spark spark-one">✳</span>
+        <span class="art-spark spark-two">✳</span>
+        <span class="art-leaf leaf-one">〰</span>
+        <div class="hero-jar hero-jar-back"><div class="jar-lid"></div><div class="jar-body"><span>GOOD<br>THINGS</span></div></div>
+        <div class="hero-jar hero-jar-front"><div class="jar-lid"></div><div class="jar-body"><span>MADE<br>WITH LOVE</span><b>✿</b></div></div>
+        <div class="hero-jar hero-jar-side"><div class="jar-lid"></div><div class="jar-body"><span>LOCAL<br>&amp; FRESH</span></div></div>
+        <div class="art-caption">A little jar of joy <span>♥</span></div>
+      </div>
+      <div class="hero-bottom-line"><span>GOOD FOOD, GOOD MOOD</span><span>EST. WITH LOVE</span><span>SCROLL TO TASTE <b>↓</b></span></div>
+    </section>
+
+    <section class="product-section section-wrap" id="pickles">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span></span> From our kitchen to yours</p>
+          <h2>The pickle <em>pantry</em></h2>
+        </div>
+        <p class="section-intro">A little tang, a little spice, and a whole lot of homemade goodness.</p>
+      </div>
+      <div class="product-grid">
+        {% for product in products %}
+        <article class="product-card">
+          <div class="product-image {{ product.accent }}">
+            <span class="product-category">{{ product.category }}</span>
+            <span class="food-emoji" aria-hidden="true">{{ product.emoji }}</span>
+            <img src="{{ url_for('static', filename='images/pickle-jar.svg') }}" alt="{{ product.name }} in a homemade glass jar" loading="lazy">
+            <span class="batch-tag">Small batch</span>
+          </div>
+          <div class="product-info">
+            <div class="product-title-row">
+              <h3>{{ product.name }}</h3>
+              <span class="product-price">₹{{ product.price }}</span>
+            </div>
+            <p>{{ product.size }} <span aria-hidden="true">·</span> {{ product.ingredients }}</p>
+            <a class="text-link order-product" href="#order" data-product="{{ product.name }}">Add to your order <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="availability-note"><span aria-hidden="true">✳</span> We make fresh batches often. Contact us to check what's ready today.</p>
+    </section>
+
+    <section class="story-section" id="story">
+      <div class="story-art" role="img" aria-label="Illustration of fresh local ingredients for pickles">
+        <div class="story-sun"></div>
+        <span class="story-produce produce-mango">🥭</span>
+        <span class="story-produce produce-lemon">🍋</span>
+        <span class="story-produce produce-chilli">🌶️</span>
+        <span class="story-produce produce-herb">🌿</span>
+        <div class="story-stamp">MADE<br>WITH<br><b>♥</b></div>
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow"><span></span> A little about us</p>
+        <h2>Rooted in home.<br><em>Made to be shared.</em></h2>
+        <p>{{ business.about }}</p>
+        <p>Every jar is a small reminder that the simplest ingredients, made with care, can bring everyone to the table.</p>
+        <div class="story-signoff"><span>From our kitchen, with love</span><b>{{ business.name }}</b></div>
+      </div>
+    </section>
+
+    <section class="order-section section-wrap" id="order">
+      <div class="order-copy">
+        <p class="eyebrow"><span></span> Your pantry called</p>
+        <h2>Let's get some<br><em>pickle joy</em> to you.</h2>
+        <p>Tell us what you'd love. This demo form doesn't save or send your details; call or email us to place a real order.</p>
+        <div class="contact-card">
+          <span class="contact-icon" aria-hidden="true">✳</span>
+          <div><small>Call or WhatsApp</small><a href="tel:{{ business.phone|replace(' ', '') }}">{{ business.phone }}</a></div>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon" aria-hidden="true">✉</span>
+          <div><small>Drop us a note</small><a href="mailto:{{ business.email }}">{{ business.email }}</a></div>
+        </div>
+        <p class="location-note">{{ business.location }}</p>
+      </div>
+      <form class="order-form" id="order-form">
+        <div class="form-heading"><h3>Order request</h3><span>DEMO FORM</span></div>
+        <label for="customer-name">Your name</label>
+        <input id="customer-name" name="name" autocomplete="name" maxlength="100" required placeholder="e.g. Asha Patel">
+        <div class="form-row">
+          <div><label for="customer-phone">Phone number</label><input id="customer-phone" name="phone" type="tel" autocomplete="tel" maxlength="20" required placeholder="+91 98765 43210"></div>
+          <div><label for="product">Pickle</label><select id="product" name="product" required><option value="">Choose a jar</option>{% for product in products %}<option value="{{ product.name }}">{{ product.name }} — ₹{{ product.price }}</option>{% endfor %}</select></div>
+        </div>
+        <label for="quantity">Quantity <span class="label-note">(jars)</span></label>
+        <input id="quantity" name="quantity" type="number" min="1" max="50" value="1" required>
+        <label for="address">Delivery address</label>
+        <textarea id="address" name="address" autocomplete="street-address" maxlength="500" rows="3" required placeholder="House / street, area, city, PIN code"></textarea>
+        <button class="button button-dark submit-button" type="submit">Prepare order request <span aria-hidden="true">→</span></button>
+        <p class="form-message" id="order-message" role="status" aria-live="polite"></p>
+        <p class="privacy-note">Please don't enter payment details here. Your form details are not stored by this demo.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">✳</span><span>{{ business.name }}</span></a>
+    <p>Made with care, shared with love.</p>
+    <a href="#home">Back to top ↑</a>
+  </footer>
+
+  <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Open pickle assistant" aria-expanded="false">
+    <span class="chat-launcher-icon" aria-hidden="true">✳</span><span>Ask our pickle pal</span><span class="chat-dot"></span>
+  </button>
+  <section class="chat-panel" id="chat-panel" aria-label="Pickle Pal chat" aria-hidden="true">
+    <div class="chat-header">
+      <div class="chat-avatar" aria-hidden="true">✳</div>
+      <div><strong>Pickle Pal</strong><small>Here for all your pickle questions</small></div>
+      <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages" aria-live="polite">
+      <div class="chat-bubble bot-bubble">Hi there! Ask me about our pickles, ingredients, or prices. For today's availability, you'll need to check with us directly. 🥭</div>
+    </div>
+    <form class="chat-form" id="chat-form">
+      <label class="visually-hidden" for="chat-input">Your message</label>
+      <input id="chat-input" name="message" maxlength="1000" required placeholder="Ask me anything pickle-y..." autocomplete="off">
+      <button type="submit" aria-label="Send message">↑</button>
+    </form>
+    <a class="chat-order-link" id="chat-order-link" href="#order">Go to the order request form ↓</a>
+    <p class="chat-footnote">A local AI helper · Answers may need checking</p>
+  </section>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>
